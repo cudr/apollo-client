@@ -31,6 +31,7 @@
   "scripts": {
     "prebuild": "npm run clean",
     "build": "tsc",
+    "postinstall": "yarn && yarn build",
     "postbuild": "npm run update-version && npm run invariants && npm run sourcemaps && npm run rollup && npm run prepdist && npm run resolve && npm run verify-version",
     "update-version": "node config/version.js update",
     "verify-version": "node config/version.js verify",
@@ -126,6 +127,32 @@
     "ts-node": "10.1.0",
     "typescript": "3.9.10",
     "wait-for-observables": "1.0.3"
+  },
+  "exports": {
+    ".": {
+      "node": "./main.cjs.js",
+      "default": "./index.js"
+    },
+    "./cache": {
+      "node": "./cache/cache.cjs.js",
+      "default": "./cache/index.js"
+    },
+    "./core": {
+      "node": "./core/core.cjs.js",
+      "default": "./core/index.js"
+    },
+    "./link/schema": {
+      "node": "./link/schema/schema.cjs.js",
+      "default": "./link/schema/index.js"
+    },
+    "./link/http": {
+      "node": "./link/http/http.cjs.js",
+      "default": "./link/http/index.js"
+    },
+    "./link/batch-http": {
+      "node": "./link/batch-http/batch-http.cjs.js",
+      "default": "./link/batch-http/index.js"
+    }
   },
   "publishConfig": {
     "access": "public"
